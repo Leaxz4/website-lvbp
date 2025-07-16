@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background-color 0.4s ease;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    /* Transición suave para las tarjetas de noticias */
+    .news-card {
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    .news-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    }
+
+    /* Efecto marco y transición para imágenes de noticias */
+    .news-card img {
+      transition: box-shadow 0.4s cubic-bezier(0.4,0,0.2,1), border 0.4s cubic-bezier(0.4,0,0.2,1), transform 0.4s cubic-bezier(0.4,0,0.2,1);
+      border: 4px solid transparent;
+    }
+    .news-card img:hover {
+      box-shadow: 0 0 0 6px #edbc34, 0 8px 24px rgba(0,0,0,0.6);
+      border: 4px solid #edbc34;
+      transform: scale(1.04) rotate(-1deg);
+    }
+
+    /* Transición para títulos de secciones */
+    .page-title h1,
+    .news-card h3 {
+      transition: color 0.4s cubic-bezier(0.4,0,0.2,1), font-size 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .page-title h1:hover {
+      color: #05f1f1;
+      font-size: 3rem;
+    }
+    .news-card h3:hover {
+      color: #fffbe6;
+      font-size: 1.8rem;
+    }
+
+    /* Cambia de color los títulos del nav bar al pasar el mouse */
+    nav ul li a {
+      transition: color 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    nav ul li a:hover {
+      color: #edbc34;
+    }
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noticias - LVBP 2024-2025</title>
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #09122C;
+      color: #FFFCFB;
+      line-height: 1.5;
+    }
+
+    /* Barra de navegación */
+    nav {
+      background-color: #09122C;
+      padding: 2rem;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+    }
+    nav ul li {
+      margin: 0 1rem;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #f5f5f5;
+      font-weight: bold;
+    }
+
+    /* Título de la página */
+    .page-title {
+      text-align: center;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .page-title h1 {
+      font-size: 2.5rem;
+    }
+    .page-title p {
+      font-size: 1.2rem;
+      color: #FFFCFB;
+    }
+
+    /* Contenedor de noticias */
+    .news-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    /* Tarjeta de noticia */
+    .news-card {
+      background-color: #000000;
+      border: 2px solid #edbc34;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+    }
+    .news-card img {
+      width: 100%;
+      height: 200px; /* Altura fija para consistencia */
+      object-fit: cover; /* Asegura que la imagen cubra el espacio */
+      display: block;
+    }
+    .news-card .news-content {
+      padding: 1rem;
+      flex: 1;
+    }
+    .news-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #edbc34;
+    }
+    .news-card p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: #FFFCFB;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #000000;
+      color: #FFFCFB;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="pag_equipos.html">Equipos</a></li>
+      <li><a href="pag_noticias.html">Noticias</a></li>
+      <li><a href="pag_calendario.html">Calendario</a></li>
+      <li><a href="pag_posiciones.html">Posiciones</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-title">
+    <h1>Últimas Noticias</h1>
+    <p>LAS NOVEDADES DE LA LIGA VENEZOLANA DE BÉISBOL PROFESIONAL</p>
+  </div>
+
+  <div class="news-container">
+    <div class="news-card">
+      <img src="img_noticias/Ronald Acuña.png" alt="Jugador de La Guaira">
+      <div class="news-content">
+        <h3>Ronald Acuña Jr. confirma que jugará con Tiburones en diciembre</h3>
+        <p>La superestrella de los Bravos de Atlanta, Ronald Acuña Jr., anunció en sus redes sociales que se unirá a los Tiburones de La Guaira para la recta final de la temporada regular, buscando ayudar al equipo a revalidar el título.</p>
+      </div>
+    </div>
+    <div class="news-card">
+      <img src="img_noticias/Jose Alguacil.png" alt="Logo Leones del Caracas">
+      <div class="news-content">
+        <h3>Leones del Caracas presenta su rotación abridora</h3>
+        <p>Los melenudos anunciaron su cuerpo de abridores para la primera semana de campeonato. El manager José Alguacil confía en la experiencia de sus lanzadores para empezar con buen pie la defensa de la capital.</p>
+      </div>
+    </div>
+    <div class="news-card">
+      <img src="img_noticias/Caracas-vs.-Magallanes.png" alt="Caracas vs Magallanes">
+      <div class="news-content">
+        <h3>Todo listo para el primer duelo de los Eternos Rivales</h3>
+        <p>Este viernes se paraliza el país con el primer enfrentamiento entre Leones del Caracas y Navegantes del Magallanes en el Estadio Universitario. Se espera un lleno total para el clásico más importante del béisbol venezolano.</p>
+      </div>
+    </div>
+    <div class="news-card">
+      <img src="img_noticias/Jake Thompson.png" alt="Jugador de Cardenales de Lara">
+      <div class="news-content">
+        <h3>Cardenales de Lara blinda su importación con un cerrador de lujo</h3>
+        <p>La gerencia de los pájaros rojos anunció la firma del relevista norteamericano, Jake Thompson, quien viene de una destacada actuación en las ligas menores y asumirá el rol de cerrador del equipo crepuscular.</p>
+      </div>
+    </div>
+    <div class="news-card">
+      <img src="img_noticias/Round Robin.png" alt="Logo LVBP">
+      <div class="news-content">
+        <h3>LVBP anuncia cambios en el formato del Round Robin para esta temporada</h3>
+        <p>La junta directiva de la liga informó que para la venidera postemporada se implementará un nuevo sistema de puntos que buscará dar más emoción a la clasificación a la Gran Final del béisbol venezolano.</p>
+      </div>
+    </div>
+    <div class="news-card">
+      <img src="img_noticias/Miguel Cabrera.png" alt="Miguel Cabrera">
+      <div class="news-content">
+        <h3>Miguel Cabrera: "Tengo la ilusión de despedirme jugando con mis Tigres"</h3>
+        <p>En recientes declaraciones, el astro de Maracay no descartó uniformarse con los Tigres de Aragua para una última temporada de despedida. "Sería un sueño retirarme frente a mi gente", comentó el futuro Salón de la Fama.</p>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>&copy; 2025 Liga Venezolana de Béisbol Profesional (LVBP). Todos los derechos reservados.</p>
+  </footer>
+</body>
+</html>

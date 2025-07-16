@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<style>
+.lvbp-animation-section {
+  background: #FFFCFB;
+  color: #09122C;
+  border: 2px solid #FFFCFB;
+  border-radius: 8px;
+  margin: 2rem auto;
+  padding: 2rem;
+  text-align: center;
+  max-width: 700px;
+  position: relative;
+  z-index: 1;
+}
+.lvbp-animation-section h2 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: #09122C;
+}
+.pelota-container {
+  position: relative;
+  width: 350px;
+  height: 120px;
+  margin: 2rem auto 1rem auto;
+  overflow: visible;
+}
+.pelota {
+  position: absolute;
+  left: 0;
+  top: 40px;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle at 60% 40%, #fff 80%, #eaeaea 100%);
+  border: 3px solid #13e7f7;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #13e7f7;
+  z-index: 2;
+  animation: lanzarPelota 2.5s cubic-bezier(.7,-0.2,.6,1.2) infinite;
+}
+.pelota::before, .pelota::after {
+  content: '';
+  position: absolute;
+  width: 28px;
+  height: 2px;
+  background: #edbc34;
+  border-radius: 2px;
+}
+.pelota::before {
+  top: 12px;
+  left: 6px;
+  transform: rotate(25deg);
+}
+.pelota::after {
+  top: 24px;
+  left: 6px;
+  transform: rotate(-25deg);
+}
+.guante {
+  position: absolute;
+  right: 0;
+  top: 30px;
+  width: 60px;
+  height: 60px;
+  background: #edbc34;
+  border-radius: 50% 50% 45% 55% / 60% 60% 40% 40%;
+  box-shadow: 0 0 10px #edbc34;
+  z-index: 1;
+  border: 3px solid #fff;
+  animation: guanteCatch 2.5s cubic-bezier(.7,-0.2,.6,1.2) infinite;
+}
+.guante::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 18px;
+  width: 36px;
+  height: 18px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  transform: rotate(-10deg);
+}
+@keyframes lanzarPelota {
+  0%   { left: 0; top: 40px; }
+  10%  { left: 30px; top: 35px; }
+  30%  { left: 120px; top: 25px; }
+  60%  { left: 250px; top: 50px; }
+  80%  { left: 295px; top: 60px; }
+  90%  { left: 310px; top: 60px; }
+  100% { left: 0; top: 40px; }
+}
+@keyframes guanteCatch {
+  0%, 80% { transform: scale(1) rotate(0deg);}
+  85% { transform: scale(1.08) rotate(-8deg);}
+  90% { transform: scale(1.15) rotate(-12deg);}
+  95% { transform: scale(1.08) rotate(-8deg);}
+  100% { transform: scale(1) rotate(0deg);}
+}
+
+/* SUGERENCIAS DE ANIMACIONES PARA MEJORAR EL ASPECTO VISUAL */
+
+/* 1. Animación de entrada para las secciones principales */
+.info-section {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 1s forwards;
+  animation-delay: 0.2s;
+}
+.info-section:nth-of-type(2) { animation-delay: 0.4s; }
+.info-section:nth-of-type(3) { animation-delay: 0.6s; }
+.info-section:nth-of-type(4) { animation-delay: 0.8s; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 2. Animación de hover para las tarjetas de equipos */
+.team-card {
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.team-card:hover {
+  box-shadow: 0 8px 24px #58e0f8fd;
+  transform: scale(1.05) rotate(-2deg);
+}
+
+/* 3. Animación de brillo en el logo del footer al pasar el mouse */
+.footer-logo img {
+  transition: filter 0.4s;
+}
+.footer-logo img:hover {
+  filter: drop-shadow(0 0 12px #13e7f7) brightness(1.2);
+}
+
+/* 4. Animación de subrayado en los enlaces del navbar al pasar el mouse */
+nav ul li a {
+  position: relative;
+}
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 100%; height: 2px;
+  background: #edbc34;
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+nav ul li a:hover::after {
+  transform: scaleX(1);
+}
+
+/* 5. Animación de parpadeo suave en el título principal */
+.page-title h1 {
+  animation: titleGlow 2.5s infinite alternate;
+}
+@keyframes titleGlow {
+  from { text-shadow: 0 0 0 #0731eb; }
+  to   { text-shadow: 0 0 16px #0731eb; }
+}
+
+</style>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    nav.scrolled {
+      background-color: #222222;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    /* Transiciones para títulos de secciones */
+    .info-section h2,
+    .secondary-section h2,
+    #contacto h2,
+    aside.aside-section h2 {
+      transition: color 0.4s ease, font-size 0.4s ease;
+    }
+    /* Efecto al pasar el mouse */
+    .info-section h2:hover {
+      color: #13e7f7; /* azul claro para contraste */
+      font-size: 2.5rem;
+    }
+    .secondary-section h2:hover {
+      color: #13e7f7; /* blanco sobre fondo oscuro */
+      font-size: 2.5rem;
+    }
+    #contacto h2:hover {
+      color: #23d1f0 ; /* mantiene el azul claro */
+      font-size: 2.5rem;
+    }
+    aside.aside-section h2:hover {
+      color: #13e7f7; /* blanco sobre fondo oscuro */
+      font-size: 2.5rem;
+    }
+    /* Efecto marco y transición para imágenes al pasar el mouse */
+    img {
+      transition: box-shadow 0.4s ease, border 0.4s ease, transform 0.4s ease;
+    }
+    img:hover {
+      box-shadow: 0 0 20px 6px #12b2da , 0 2px 8px rgba(0,0,0,0.25);
+      border: 4px solid #1ce5f3 ;
+      transform: scale(1.04);
+      z-index: 10;
+      position: relative;
+    }
+    nav ul li a:hover {
+      color: #edbc34;
+      transition: color 0.3s;
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liga Venezolana de Béisbol Profesional (LVBP)</title>
+  <style>
+  
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #09122C;
+      color: #FFFCFB;  
+      line-height: 1.5;
+      margin-right: 300px;
+    }
+    /* Navbar */
+    nav {
+      background-color: #09122C; 
+      padding: 2rem;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+    }
+    nav ul li {
+      margin: 0 1rem;
+    }
+    nav ul li a {
+      color: #F6F1E9; 
+      text-decoration: none;
+      font-weight: bold;
+    }
+    /* Título de la página cerca del carrusel */
+    .page-title {
+      position: relative;
+      text-align: center;
+      padding: 1rem;
+      background-color: #000000;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #FFFCFB; 
+    }
+    .title-content {
+      position: relative;
+      z-index: 2;
+    }
+    .title-left,
+    .title-right {
+      position: absolute;
+      width: 80px;
+      top: 50%;
+      transform: translateY(-52%);
+      z-index: 1;
+    }
+    .title-left {
+      left: 1rem;
+    }
+    .title-right {
+      right: 1rem;
+    }
+    /* Slider */
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 550px;
+      overflow: hidden;
+      margin: 1rem 0;
+      background-color: #09122C; 
+    }
+    .slider .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slider .slide.active {
+      opacity: 1;
+    }
+    .slider .slide::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.2);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .slider img {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto;
+      z-index: 1;
+    }
+    /* Aside: fijado del lado derecho de la pantalla */
+    aside.aside-section {
+      position: fixed;
+      top: 25px;
+      right: 1rem;
+      width: 250px;
+      background-color: #000000; 
+      border: 2px solid #FFFCFB; 
+      color: #FFFCFB; 
+      padding: 1rem;
+      text-align: center;
+      z-index: 100;
+      border-radius: 8px; 
+    }
+    aside.aside-section h2 {
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+      color: #FFFCFB; 
+    }
+    aside.aside-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    aside.aside-section ul li {
+      margin-bottom: 0.5rem;
+    }
+    aside.aside-section img {
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+      margin-top: 1rem;
+    }
+    /* Secciones de Información */
+    .info-section {
+      padding: 2rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    .info-section:nth-of-type(odd) {
+      background-color: #FFFCFB; 
+      color: #09122C; 
+    }
+    .info-section:nth-of-type(even) {
+      background-color: #FFFCFB; 
+      color: #09122C; 
+      flex-direction: row-reverse;
+    }
+    .info-section img {
+      width: 50%;
+      max-width: 300px;
+      margin-right: 1rem;
+      border-radius: 8px; 
+    }
+    .info-section:nth-of-type(even) img {
+      margin-right: 0;
+      margin-left: 1rem;
+    }
+    .info-text {
+      flex: 1;
+      padding: 1rem;
+    }
+    /* Secciones Secundarias */
+    .secondary-section {
+      background-color: #09122C; 
+      border: 2px solid #FFFCFB; 
+      color: #FFFCFB; 
+      padding: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      border-radius: 8px; 
+    }
+    .secondary-section h2 {
+      color: #FFFCFB; 
+    }
+    /* --- ESTILOS PARA LA CUADRÍCULA DE EQUIPOS --- */
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1rem;
+    }
+    .team-card {
+        background-color: #000000; 
+        padding: 1rem;
+        border-radius: 8px;
+        transition: transform 0.3s;
+        border: 1px solid #ddd; 
+    }
+    .team-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+    }
+    .team-card img {
+        max-width: 100px;
+        height: auto;
+        margin-bottom: 0.5rem;
+    }
+    .team-card h3 {
+        font-size: 1rem;
+        color: #FFFCFB; 
+    }
+    /* --- FIN DE ESTILOS DE EQUIPOS --- */
+
+    /* Formulario de Contacto */
+    #contacto {
+      background-color: #09122C; 
+      border: 2px solid #FFFCFB; 
+      padding: 2rem;
+      margin-bottom: 1rem;
+      border-radius: 8px; 
+    }
+    #contacto h2 {
+      color: #FFFCFB; 
+      text-align: center;
+    }
+    #contacto form {
+      max-width: 600px;
+      margin: auto;
+    }
+    #contacto div {
+      margin-bottom: 1rem;
+    }
+    #contacto label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      color: #FFFCFB; 
+    }
+    #contacto input,
+    #contacto textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #FFFCFB; 
+      border-radius: 4px;
+      font-size: 1rem;
+      background-color: #09122C; 
+      color: #FFFCFB; 
+    }
+    #contacto button {
+      padding: 0.7rem 1.5rem;
+      background-color: #092c61; 
+      color: #F6F1E9; 
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display: block; 
+      margin: 0 auto; 
+      transition: background-color 0.3s; 
+    }
+    #contacto button:hover {
+      background-color: #09122C; 
+    }
+    /* Footer */
+    footer {
+      background-color: #09122C; 
+      color: #F6F1E9; 
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 1.5rem;
+    }
+    footer .descripcion {
+      margin-top: 1.5rem;
+      background-color: #09122C; 
+      padding: 1rem;
+      color: #FFFCFB; 
+      border-radius: 8px; 
+    }
+    /* Responsividad */
+    @media (max-width: 768px) {
+      body {
+        margin-right: 0; /* Quita el margen cuando la pantalla es pequeña */
+      }
+      aside.aside-section {
+        position: static;
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+      .info-section {
+        flex-direction: column !important;
+      }
+      .info-section img {
+        width: 80%;
+        margin: 0 0 1rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="pag_equipos.html">Equipos</a></li>
+      <li><a href="pag_noticias.html">Noticias</a></li>
+      <li><a href="pag_calendario.html">Calendario</a></li>
+      <li><a href="pag_posiciones.html">Posiciones</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-title">
+    <img class="title-left" src="img_pag/Pelota.png" alt="Pelota de Béisbol">
+    <div class="title-content">
+      <h1>Liga Venezolana de Béisbol Profesional (LVBP)</h1>
+      <p>VIVE LA PASIÓN DEL BÉISBOL VENEZOLANO</p>
+    </div>
+    <img class="title-right" src="img_pag/lvbp.png" alt="Logo de la LVBP">
+  </div>
+  <div class="slider">
+    <div class="slide active">
+      <img src="img_pag/Accion_lvbp.png" alt="Jugada de béisbol de la LVBP">
+    </div>
+    <div class="slide">
+      <img src="img_pag/Trofeo del caribe.png" alt="Trofeo de campeón de la LVBP">
+    </div>
+    <div class="slide">
+      <img src="img_pag/Estadio_Lleno.png" alt="Estadio de la LVBP lleno de fanáticos">
+    </div>
+  </div>
+<!-- Sección de animación temática LVBP -->
+<section class="lvbp-animation-section" id="animacion">
+  <h2>¡¡La Pelota está en Juego !!</h2>
+
+  <div class="pelota-container">
+    <div class="pelota"></div>
+    <div class="guante"></div>
+  </div>
+  <h2>¡ Pequeña Demostracion del Juego !</h2>
+  <p>Disfruta la emoción del béisbol venezolano con esta animación inspirada en la LVBP.</p>
+</section>
+<html lang="es">
+  <aside class="aside-section">
+    <h2>Equipos de la LVBP</h2>
+    <ul>
+      <li>Águilas del Zulia</li>
+      <li>Bravos de Margarita</li>
+      <li>Cardenales de Lara</li>
+      <li>Caribes de Anzoátegui</li>
+      <li>Leones del Caracas</li>
+      <li>Navegantes del Magallanes</li>
+      <li>Tiburones de La Guaira</li>
+      <li>Tigres de Aragua</li>
+    </ul>
+    <img src="img_pag/lvbp.png" alt="Logo LVBP en Aside">
+  </aside>
+
+  <section class="info-section">
+    <img src="img_pag/Historia.png" alt="Historia de la LVBP">
+    <div class="info-text">
+  
+      <h2>¿Qué es la LVBP?</h2>
+      <p>La Liga Venezolana de Béisbol Profesional es el campeonato de béisbol de más alto nivel en Venezuela. Desde su fundación en 1945, se ha convertido en una parte integral de la cultura del país, reuniendo a familias y amigos para disfrutar del deporte nacional.</p>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <img src="img_pag/Caracas_Magallanes.png" alt="Caracas vs Magallanes">
+    <div class="info-text">
+      <h2>Los Eternos Rivales</h2>
+      <p>La rivalidad entre los Leones del Caracas y los Navegantes del Magallanes es una de las más intensas y seguidas del béisbol caribeño. Cada encuentro paraliza al país y es un verdadero espectáculo de pasión y competitividad.</p>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <img src="img_pag/Campeones.png" alt="Tiburones de La Guaira Campeones">
+    <div class="info-text">
+      <h2>El Campeón Actual</h2>
+      <p>Los Tiburones de La Guaira rompieron una sequía de 38 años y se coronaron campeones de la temporada 2023-2024, para luego hacer historia al ganar la Serie del Caribe 2024. ¡Una hazaña inolvidable para su fanaticada!</p>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <img src="img_pag/Fanaticada.png" alt="Fanaticada de la LVBP">
+    <div class="info-text">
+      <h2>Formato de la Temporada</h2>
+      <p>La temporada regular consta de un formato de todos contra todos. Los mejores equipos avanzan a la postemporada (Round Robin), de donde salen los dos finalistas que se disputarán el campeonato y el honor de representar a Venezuela en la Serie del Caribe.</p>
+    </div>
+  </section>
+
+  <section class="secondary-section" id="equipos">
+    <h2>Nuestros Equipos</h2>
+    <p>Conoce a los 8 equipos que conforman la liga y que luchan cada temporada por la eterna gloria de un campeonato.</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <img src="img_equipos/Aguilas.png" alt="Logo Águilas del Zulia">
+        <h3>Águilas del Zulia</h3>
+      </div>
+      <div class="team-card">
+        <img src="img_equipos/Bravos.png" alt="Logo Bravos de Margarita">
+        <h3>Bravos de Margarita</h3>
+      </div>
+      <div class="team-card">
+        <img src="img_equipos/Cardenales.png" alt="Logo Cardenales de Lara">
+        <h3>Cardenales de Lara</h3>
+      </div>
+      <div class="team-card">
+        <img src="img_equipos/Caribes.png" alt="Logo Caribes de Anzoátegui">
+        <h3>Caribes de Anzoátegui</h3>
+      </div>
+      <div class="team-card">
+        <img src="img_equipos/Leones.png" alt="Logo Leones del Caracas">
+        <h3>Leones del Caracas</h3>
+      </div>
+      <div class="team-card">
+        <img src="img_equipos/Magallanes.png" alt="Logo Navegantes del Magallanes">
+        <h3>Navegantes del Magallanes</h3>
+      </div>
+      <div class="team-card">
+        <img src="img_equipos/Tiburones.png" alt="Logo Tiburones de La Guaira">
+        <h3>Tiburones de La Guaira</h3>
+      </div>
+      <div class="team-card">
+        <img src="img_equipos/Tigres.png" alt="Logo Tigres de Aragua">
+        <h3>Tigres de Aragua</h3>
+      </div>
+    </div>
+  </section>
+
+  <section class="secondary-section" id="estadios">
+      <h2>Los Templos del Béisbol</h2>
+      <blockquote>
+        Cada equipo tiene su casa, un estadio lleno de historia y pasión.
+      </blockquote>
+      <p><b>Leones:</b> Estadio Monumental Simón Bolívar (Caracas)</p>
+      <p><b>Tiburones:</b> Estadio Universitario (Caracas)</p>
+      <p><b>Navegantes del Magallanes:</b> Estadio José Bernardo Pérez (Valencia)</p>
+      <p><b>Tigres de Aragua:</b> Estadio José Pérez Colmenares (Maracay)</p>
+      <p><b>Cardenales de Lara:</b> Estadio Antonio Herrera Gutiérrez (Barquisimeto)</p>
+      <p><b>Águilas del Zulia:</b> Estadio Luis Aparicio "El Grande" (Maracaibo)</p>
+      <p><b>Caribes de Anzoátegui:</b> Estadio Alfonso "Chico" Carrasquel (Puerto La Cruz)</p>
+      <p><b>Bravos de Margarita:</b> Estadio Nueva Esparta (Guatamare)</p>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <form action="#" method="post">
+      <div>
+        <label for="nombre">Nombre y Apellido</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre y apellido" required>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Ingresa tu email" required>
+      </div>
+      <div>
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje" required></textarea>
+      </div>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-logo">
+        <img src="img_pag/logo uba.png" alt="Logo de la Institución">
+      </div>
+      <div class="footer-info">
+        <p>Leandro Fuentes - Cédula V-32.016.373</p>
+        <p>Universidad Bicentenaria de Aragua</p>
+        <p>&copy; 2025 Derechos Reservados</p>
+        <div class="descripcion">
+          <h3>Descripción del Sitio</h3>
+          <p>Bienvenido a nuestra página de fanáticos dedicada a la Liga Venezolana de Béisbol Profesional. Aquí encontrarás información, noticias y todo lo relacionado con la pasión del béisbol en Venezuela.</p>
+          <p>REPÚBLICA BOLIVARIANA DE VENEZUELA</p>
+
+         <p>UNIVERSIDAD BICENTENARIA DE ARAGUA</p>
+         <p>VICERRECTORADO ACADÉMICO</p>
+
+         <p>DECANATO DE INGENIERÍA</p>
+
+         <p>ESCUELA DE INGENIERÍA EN SISTEMAS</p>
+
+         <p>SAN JOAQUÍN DE TURMERO - ESTADO ARAGUA</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    footer {
+        /* Los estilos ya están en el <style> del <head> */
+    }
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .footer-logo {
+      flex: 0 0 auto;
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+    }
+    .footer-logo img {
+      max-width: 150px;
+      height: auto;
+    }
+    .footer-info {
+      flex: 1 1 auto;
+    }
+    .footer-info p,
+    .footer-info h3,
+    .footer-info .descripcion p {
+      margin: 0.3rem 0;
+    }
+  </style>
+
+  <script>
+    const slides = document.querySelectorAll('.slider .slide');
+    let currentSlide = 0;
+    setInterval(() => {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }, 3000);
+  </script>
+</body>
+</html>

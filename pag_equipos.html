@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background-color 0.5s ease;
+    }
+    nav ul li a {
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #edbc34;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    .team-card, .page-title, footer {
+      transition: background-color 0.5s, color 0.5s;
+    }
+    /* Transiciones para títulos de sección */
+    .page-title h1,
+    .team-card h2 {
+      transition: color 0.5s, font-size 0.5s;
+    }
+    /* Efecto al pasar el mouse sobre el título principal */
+    .page-title h1:hover {
+      color: #12b2da;
+      font-size: 3rem;
+    }
+    /* Efecto al pasar el mouse sobre los títulos de los equipos */
+    .team-card h2:hover {
+      color: #f5f5f5;
+      font-size: 2rem;
+    }
+    /* Transición y efecto marco para imágenes de equipos */
+    .team-card img {
+      transition: border 0.4s, box-shadow 0.4s, transform 0.4s;
+    }
+    .team-card img:hover {
+      border: 4px solid #12b2da;
+      box-shadow: 0 0 20px #34e8f5, 0 0 10px #edbc34;
+      transform: scale(1.05);
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equipos - LVBP</title>
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #09122C;
+      color: #FFFCFB;
+      line-height: 1.5;
+    }
+    
+    /* Navbar */
+    nav {
+      background-color: #09122C;
+      padding: 2rem;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+    }
+    nav ul li {
+      margin: 0 1rem;
+    }
+    nav ul li a {
+      color: #FFFCFB;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    /* Título de la página */
+    .page-title {
+      text-align: center;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .page-title h1 {
+      font-size: 2.5rem;
+    }
+    .page-title p {
+      font-size: 1.5rem;
+      color: #FFFCFB;
+    }
+    /* Contenedor de equipos */
+    .team-container {
+      padding: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .team-card {
+      background-color: #000000;
+      border: 2px solid #FFFCFB;
+      padding: 1rem;
+      width: 300px;
+      text-align: center;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+    .team-card img {
+      width: 80%;
+      height: 200px;
+      object-fit: contain; /* Para que los logos no se deformen */
+      margin-bottom: 1rem;
+      border: 1px solid #edbc34;
+      border-radius: 4px;
+      background-color: #ffffff; /* Fondo blanco para logos con transparencia */
+    }
+    .team-card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #edbc34;
+    }
+    .team-card p {
+      font-size: 1rem;
+      color: #f5f5f5; /* Color de texto más claro para el párrafo */
+    }
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 2rem;
+        margin-top: 2rem;
+        color: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="pag_equipos.html">Equipos</a></li>
+      <li><a href="pag_noticias.html">Noticias</a></li>
+      <li><a href="pag_calendario.html">Calendario</a></li>
+      <li><a href="pag_posiciones.html">Posiciones</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-title">
+    <h1>Equipos de la LVBP</h1>
+    <p>Conoce a los equipos que conforman la Liga Venezolana de Béisbol Profesional</p>
+  </div>
+
+  <div class="team-container">
+    <div class="team-card">
+      <img src="img_equipos/Leones.png" alt="Logo de Leones del Caracas">
+      <h2>Leones del Caracas</h2>
+      <p>Sede: Caracas, D.C.<br>Estadio: Monumental Simón Bolívar</p>
+    </div>
+    <div class="team-card">
+      <img src="img_equipos/Tiburones.png" alt="Logo de Tiburones de La Guaira">
+      <h2>Tiburones de La Guaira</h2>
+      <p>Sede: La Guaira, La Guaira<br>Estadio: Jorge Luis García Carneiro</p>
+    </div>
+    <div class="team-card">
+      <img src="img_equipos/Magallanes.png" alt="Logo de Navegantes del Magallanes">
+      <h2>Navegantes del Magallanes</h2>
+      <p>Sede: Valencia, Carabobo<br>Estadio: José Bernardo Pérez</p>
+    </div>
+    <div class="team-card">
+      <img src="img_equipos/Tigres.png" alt="Logo de Tigres de Aragua">
+      <h2>Tigres de Aragua</h2>
+      <p>Sede: Maracay, Aragua<br>Estadio: José Pérez Colmenares</p>
+    </div>
+    <div class="team-card">
+      <img src="img_equipos/Cardenales.png" alt="Logo de Cardenales de Lara">
+      <h2>Cardenales de Lara</h2>
+      <p>Sede: Barquisimeto, Lara<br>Estadio: Antonio Herrera Gutiérrez</p>
+    </div>
+    <div class="team-card">
+      <img src="img_equipos/Aguilas.png" alt="Logo de Águilas del Zulia">
+      <h2>Águilas del Zulia</h2>
+      <p>Sede: Maracaibo, Zulia<br>Estadio: Luis Aparicio "El Grande"</p>
+    </div>
+    <div class="team-card">
+      <img src="img_equipos/Caribes.png" alt="Logo de Caribes de Anzoátegui">
+      <h2>Caribes de Anzoátegui</h2>
+      <p>Sede: Puerto La Cruz, Anzoátegui<br>Estadio: Alfonso "Chico" Carrasquel</p>
+    </div>
+    <div class="team-card">
+      <img src="img_equipos/Bravos.png" alt="Logo de Bravos de Margarita">
+      <h2>Bravos de Margarita</h2>
+      <p>Sede: Porlamar, Nueva Esparta<br>Estadio: Nueva Esparta</p>
+    </div>
+  </div>
+  
+  <footer>
+    <p>&copy; 2025 LVBP. Todos los derechos reservados.</p>
+  </footer>
+</body>
+</html>
